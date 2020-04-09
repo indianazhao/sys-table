@@ -1,5 +1,6 @@
 <div class="container">
   <ul class="list-group">
+
     <li class="list-group-item bg-primary text-white">
       <div class="d-flex">
         <div class="flex-even"
@@ -8,6 +9,11 @@
         </div>
       </div>
     </li>
+
+    <li class="list-group-item list-group-item-action">
+      Group
+    </li>
+
     <li class="list-group-item list-group-item-action"
         *ngFor="let row of data">
       <div class="d-flex">
@@ -17,5 +23,10 @@
         </div>
       </div>
     </li>
+
   </ul>
 </div>
+
+<pre>
+  {{ groups | json }}
+</pre>
