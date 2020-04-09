@@ -10,23 +10,33 @@
       </div>
     </li>
 
-    <li class="list-group-item list-group-item-action">
-      Group
-    </li>
-
-    <li class="list-group-item list-group-item-action"
-        *ngFor="let row of data">
-      <div class="d-flex">
-        <div class="flex-even"
-             *ngFor="let label of header">
-          {{ row[label] }}
+    <ng-template #tplRow
+                 let-items="items">
+      <li class="list-group-item list-group-item-action"
+          *ngFor="let row of items">
+        <div class="d-flex">
+          <div class="flex-even"
+               *ngFor="let label of header">
+            {{ row[label] }}
+          </div>
         </div>
-      </div>
-    </li>
+      </li>
+    </ng-template>
+
+    <!-- group on -->
+    <ng-container *ngIf="groupBy">
+      <ng-container *ngFor="let group of groups">
+        <li class="list-group-item list-group-item-action">
+          {{ group.id }}
+        </li>
+        <ng-container *ngTemplateOutlet="tplRow; context: {items: group.items}"></ng-container>
+      </ng-container>
+    </ng-container>
+
+    <!-- group off -->
+    <ng-container *ngIf="!groupBy">
+      <ng-container *ngTemplateOutlet="tplRow; context: {items: data}"></ng-container>
+    </ng-container>
 
   </ul>
 </div>
-
-<pre>
-  {{ groups | json }}
-</pre>

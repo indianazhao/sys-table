@@ -10,6 +10,7 @@ export class SysTableComponent implements OnInit {
 
   @Input() header: string[];
   @Input() data: any[];
+  @Input() groupBy: string;
 
   groups: any[];
 
@@ -20,8 +21,12 @@ export class SysTableComponent implements OnInit {
   }
 
   grouping(data: any) {
+    this.groups = [];
+    if (!this.groupBy) {
+      return;
+    }
     this.groups = _.chain(data)
-                   .groupBy('gender')
+                   .groupBy(this.groupBy)
                    .toPairs()
                    .map(value => {
                      return {
