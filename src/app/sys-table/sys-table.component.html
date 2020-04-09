@@ -1,9 +1,21 @@
 <div class="container">
   <ul class="list-group">
-    <li class="list-group-item bg-primary text-white">{{ header }}</li>
+    <li class="list-group-item bg-primary text-white">
+      <div class="d-flex">
+        <div class="flex-even"
+             *ngFor="let label of header">
+          {{ label }}
+        </div>
+      </div>
+    </li>
     <li class="list-group-item list-group-item-action"
-        *ngFor="let item of items">
-      {{ item }}
+        *ngFor="let row of data">
+      <div class="d-flex">
+        <div class="flex-even"
+             *ngFor="let label of header">
+          {{ row[label] }}
+        </div>
+      </div>
     </li>
   </ul>
 </div>
