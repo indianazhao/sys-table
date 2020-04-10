@@ -1,42 +1,43 @@
-<div class="container">
-  <ul class="list-group">
+<ul class="list-group m-2">
 
-    <li class="list-group-item bg-primary text-white">
+  <li class="list-group-item bg-primary text-white">
+    <div class="d-flex">
+      <div class="flex-even"
+           *ngFor="let label of header">
+        {{ label | titlecase }}
+      </div>
+    </div>
+  </li>
+
+  <ng-template #tplRow
+               let-items="items">
+    <li class="list-group-item list-group-item-action"
+        *ngFor="let row of items">
       <div class="d-flex">
         <div class="flex-even"
              *ngFor="let label of header">
-          {{ label }}
+          {{ row[label] }}
         </div>
       </div>
+
+      <!-- row footer -->
+      <ng-container *ngTemplateOutlet="rowFooter['_results'][0].tpl; context: {row: row}"></ng-container>
     </li>
+  </ng-template>
 
-    <ng-template #tplRow
-                 let-items="items">
-      <li class="list-group-item list-group-item-action"
-          *ngFor="let row of items">
-        <div class="d-flex">
-          <div class="flex-even"
-               *ngFor="let label of header">
-            {{ row[label] }}
-          </div>
-        </div>
+  <!-- group on -->
+  <ng-container *ngIf="groupBy">
+    <ng-container *ngFor="let group of groups">
+      <li class="list-group-item bg-gray text-white">
+        {{ groupBy | titlecase }}: {{ group.id | titlecase }}
       </li>
-    </ng-template>
-
-    <!-- group on -->
-    <ng-container *ngIf="groupBy">
-      <ng-container *ngFor="let group of groups">
-        <li class="list-group-item list-group-item-action">
-          {{ group.id }}
-        </li>
-        <ng-container *ngTemplateOutlet="tplRow; context: {items: group.items}"></ng-container>
-      </ng-container>
+      <ng-container *ngTemplateOutlet="tplRow; context: {items: group.items}"></ng-container>
     </ng-container>
+  </ng-container>
 
-    <!-- group off -->
-    <ng-container *ngIf="!groupBy">
-      <ng-container *ngTemplateOutlet="tplRow; context: {items: data}"></ng-container>
-    </ng-container>
+  <!-- group off -->
+  <ng-container *ngIf="!groupBy">
+    <ng-container *ngTemplateOutlet="tplRow; context: {items: data}"></ng-container>
+  </ng-container>
 
-  </ul>
-</div>
+</ul>

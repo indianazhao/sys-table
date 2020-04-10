@@ -1,4 +1,14 @@
-<app-sys-table [header]="header"
-               [data]="data"
-               groupBy="gender">
-</app-sys-table>
+<div class="container">
+  <app-sys-table [header]="header"
+                 [data]="data"
+                 groupBy="gender">
+    <app-sys-row-footer>
+      <ng-template #tpl
+                   let-row="row">
+        <div class="alert alert-secondary mt-1">
+          <strong>Address</strong> {{ row.address }}
+        </div>
+      </ng-template>
+    </app-sys-row-footer>
+  </app-sys-table>
+</div>

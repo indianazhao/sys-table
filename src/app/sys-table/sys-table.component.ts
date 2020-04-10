@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ContentChildren, QueryList } from '@angular/core';
 import * as _ from 'lodash';
+import { SysRowFooterComponent } from './sys-row-footer/sys-row-footer.component';
 
 @Component({
   selector: 'app-sys-table',
@@ -11,6 +12,7 @@ export class SysTableComponent implements OnInit {
   @Input() header: string[];
   @Input() data: any[];
   @Input() groupBy: string;
+  @ContentChildren(SysRowFooterComponent) rowFooter!: QueryList<SysRowFooterComponent>;
 
   groups: any[];
 
