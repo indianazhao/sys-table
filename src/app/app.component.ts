@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
+import { SysRowFooterComponent } from './sys-table/sys-row-footer/sys-row-footer.component';
+import { SysTableComponent } from './sys-table/sys-table.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  standalone: true,
+  imports: [SysTableComponent, SysRowFooterComponent]
 })
 export class AppComponent {
   title = 'sys-table';

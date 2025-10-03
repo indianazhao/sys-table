@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit, Input, ContentChildren, QueryList } from '@angular/core';
 import * as _ from 'lodash';
 import { SysRowFooterComponent } from './sys-row-footer/sys-row-footer.component';
@@ -5,7 +6,9 @@ import { SysRowFooterComponent } from './sys-row-footer/sys-row-footer.component
 @Component({
   selector: 'app-sys-table',
   templateUrl: './sys-table.component.html',
-  styleUrls: ['./sys-table.component.scss']
+  styleUrls: ['./sys-table.component.scss'],
+  standalone: true,
+  imports: [CommonModule, SysRowFooterComponent]
 })
 export class SysTableComponent implements OnInit {
 

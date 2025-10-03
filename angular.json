@@ -31,7 +31,9 @@
               "src/styles.scss"
             ],
             "scripts": [],
-            "es5BrowserSupport": true
+            "allowedCommonJsDependencies": [
+              "lodash"
+            ]
           },
           "configurations": {
             "production": {
@@ -136,6 +138,5 @@
         }
       }
     }
-  },
-  "defaultProject": "sys-table"
+  }
 }
